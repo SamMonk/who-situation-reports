@@ -14,5 +14,6 @@ PDFs = './PDFs/'
 for link in situation_report_links:
     filename = os.path.join(PDFs,link['href'].split('/')[-1].split('?')[0])
     if '.pdf' in filename:
-        with open(filename, 'wb') as f:
-            f.write(requests.get(urljoin("https://www.who.int/",link['href'])).content)
+        if filename not in os.listdir(PDFs):
+            with open(filename, 'wb') as f:
+                f.write(requests.get(urljoin("https://www.who.int/",link['href'])).content)

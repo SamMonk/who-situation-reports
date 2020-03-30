@@ -5,8 +5,11 @@ PDFs = './PDFs/'
 JSONs = './JSONs/'
 
 for filename in os.listdir(PDFs):
-    pdf_filename = os.path.join(PDFs, filename)
-    json_filename = os.path.join(JSONs, filename).replace('.pdf', '.json')
-    tabula.convert_into(pdf_filename, json_filename,
-                        output_format="json", pages="all")
+    if filename.replace('pdf','json') not in os.listdir(JSONs):
+        print(filename)
+        print(os.listdir(JSONs))
+        pdf_filename = os.path.join(PDFs, filename)
+        json_filename = os.path.join(JSONs, filename).replace('.pdf', '.json')
+        tabula.convert_into(pdf_filename, json_filename,
+                            output_format="json", pages="all")
 
