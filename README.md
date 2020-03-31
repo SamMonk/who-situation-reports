@@ -84,3 +84,27 @@ for filename in os.listdir(JSONs):
 session.flush()
 session.commit()
 ```
+
+### Instructions for updating data
+
+Suggest using a python virtual environment to restore the dependencies:
+
+```python
+pip install requirements.txt
+```
+Get new data
+```python
+python ./report_bot.py
+```
+Translate to JSON
+```python
+python ./tabula_pdf_to_json.py
+```
+Put in sqlite database
+```python
+python ./create_and_insert.py
+```
+Get USA data out of the database and convert to JSON
+```python
+python ./get_usa_data_db_to_json_copy.py
+```
