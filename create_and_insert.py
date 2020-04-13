@@ -12,13 +12,12 @@ JSONs = './JSONs/'
 session = Session()
 
 for filename in os.listdir(JSONs):
-    print(filename)
+    #print(filename)
     with open(os.path.join(JSONs, filename), 'rb') as json_file:
         all_data = json.load(json_file)
         for item in all_data:
             for sub_item in item['data']:
                 if len(sub_item) < 5:
-                    print('Short Array')
                     continue
                 try:
                     session.merge(SituationReport(
