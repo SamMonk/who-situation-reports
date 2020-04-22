@@ -38,7 +38,7 @@ jobs:
         python ./create_and_insert.py
         python ./get_usa_data_db_to_json_copy.py
     - name: Archive code coverage results
-        uses: actions/upload-artifact@v1
-        with:
-          name: usa-coronavirus-data
-          path: ./all_usa_data.json
+      uses: actions/upload-artifact@v1
+      with: |
+        name: usa-coronavirus-data
+        path: ./all_usa_data.json
