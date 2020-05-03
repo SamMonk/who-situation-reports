@@ -20,16 +20,23 @@ for filename in os.listdir(JSONs):
                 if len(sub_item) < 5:
                     continue
                 try:
+                    deaths = 0
+                    if(sub_item[4]['text'] == "" and len(sub_item) > 5):
+                        deaths = int(sub_item[5]['text'])
+                    else:
+                        deaths = int(sub_item[4]['text'])
+
                     session.merge(SituationReport(
                         sub_item[0]['text'], 
                         int(sub_item[1]['text']),
                         int(sub_item[2]['text']), 
                         int(sub_item[3]['text']),
-                        int(sub_item[4]['text']),
+                        deaths,
                         datetime.datetime.strptime(filename.split('-')[0], '%Y%m%d')
                         )
                     )
                 except ValueError:
+                    print(filename)
                     print(sub_item[0]['text'], 'FAILED')
 
 session.flush()
