@@ -35,11 +35,15 @@ jobs:
         flake8 . --count --exit-zero --max-complexity=10 --max-line-length=127 --statistics
     - name: Run My Programs
       run: |
+        echo "Starting my scripts"
         python ./report_bot.py
         python ./tabula_pdf_to_json.py
         python ./create_and_insert.py
+        echo "Getting US data"
         python ./get_usa_data_db_to_json_copy.py
+        echo "Getting all data"
         python ./get_data_db_to_json.py
+        echo "Ending my scripts"
     - name: Archive code coverage results
       uses: mikeal/publish-to-github-action@master
       env:
